@@ -336,6 +336,72 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "name": "nom",
+            "in": "query",
+            "description": "besoin d'être mise à jour",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "photo",
+            "in": "query",
+            "description": "besoin d'être mise à jour",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "url"
+            }
+          },
+          {
+            "name": "nationalite",
+            "in": "query",
+            "description": "besoin d'être mise à jour",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "biographie",
+            "in": "query",
+            "description": "besoin d'être mise à jour",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "text"
+            }
+          },
+          {
+            "name": "dateNaissance",
+            "in": "query",
+            "description": "besoin d'être mise à jour",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "film",
+            "in": "query",
+            "description": "besoin d'être mise à jour",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Realisateur"
+              }
+            }
           }
         ],
         "requestBody": {
