@@ -1,0 +1,706 @@
+openapi: 3.0.0
+info:
+  title: API Cinema
+  description: API Cinema
+  version: 0.1.0
+servers:
+- url: /
+tags:
+- name: Film
+  description: API film(s)
+- name: Realisateur
+  description: API réalisateur(s)/réalisatrice(s)
+- name: Acteur
+  description: API acteur(s)/actrice(s)
+- name: Critique
+  description: API Critique(s)
+- name: Note
+  description: API Note(s)
+paths:
+  /films:
+    get:
+      tags:
+      - Film
+      operationId: listMovies
+      responses:
+        "200":
+          description: todo ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+    post:
+      tags:
+      - Film
+      operationId: addMovie
+      requestBody:
+        description: List Movies
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+      responses:
+        "202":
+          description: Movie added
+        "422":
+          description: Missing information
+  /films/{id}:
+    get:
+      tags:
+      - Film
+      operationId: getMovieById
+      parameters:
+      - name: id
+        in: path
+        description: id of movie
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+    put:
+      tags:
+      - Film
+      description: Update film
+      operationId: updateFilm
+      parameters:
+      - name: id
+        in: path
+        description: besoin d'être mise à jour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: titre
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      requestBody:
+        description: Updated film object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+        required: true
+    delete:
+      tags:
+      - Film
+      operationId: delFilm
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: id
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Suppression du film
+        "400":
+          description: Id invalide
+        "404":
+          description: Film non trouvée
+  /realisateurs:
+    get:
+      tags:
+      - Realisateur
+      operationId: listProducors
+      responses:
+        "200":
+          description: producors ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realisateur'
+    post:
+      tags:
+      - Realisateur
+      operationId: addProducer
+      requestBody:
+        description: List Producors
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realisateur'
+      responses:
+        "202":
+          description: Movie added
+        "422":
+          description: Missing information
+  /realisateurs/{id}:
+    get:
+      tags:
+      - Realisateur
+      operationId: getProducer
+      parameters:
+      - name: id
+        in: path
+        description: id of producer
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realisateur'
+    put:
+      tags:
+      - Realisateur
+      description: Update producer
+      operationId: updateProducer
+      parameters:
+      - name: id
+        in: path
+        description: besoin d'être mise à jour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: Updated producer object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realisateur'
+        required: true
+      responses:
+        "400":
+          description: realisateur invalide
+        "404":
+          description: realisateur inconnue
+    delete:
+      tags:
+      - Realisateur
+      operationId: delRealisateur
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: id
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Suppression du realisateur
+        "400":
+          description: Id invalide
+        "404":
+          description: Realisateur non trouvée
+  /acteurs:
+    get:
+      tags:
+      - Acteur
+      operationId: listActors
+      responses:
+        "200":
+          description: actors ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acteur'
+    post:
+      tags:
+      - Acteur
+      operationId: addActor
+      requestBody:
+        description: List Actors
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Acteur'
+      responses:
+        "202":
+          description: Movie added
+        "422":
+          description: Missing information
+  /acteurs/{id}:
+    get:
+      tags:
+      - Acteur
+      operationId: getActor
+      parameters:
+      - name: id
+        in: path
+        description: id of acteur
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acteur'
+    put:
+      tags:
+      - Acteur
+      description: Update actor
+      operationId: updateActor
+      parameters:
+      - name: id
+        in: path
+        description: besoin d'être mise à jour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: Updated actor object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Acteur'
+        required: true
+      responses:
+        "400":
+          description: acteur invalide
+        "404":
+          description: acteur inconnue
+    delete:
+      tags:
+      - Acteur
+      operationId: delActeur
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: id
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Suppression du acteur
+        "400":
+          description: Id invalide
+        "404":
+          description: Acteur non trouvée
+  /critiques:
+    get:
+      tags:
+      - Critique
+      operationId: listCriticals
+      responses:
+        "200":
+          description: actors ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Critique'
+    post:
+      tags:
+      - Critique
+      operationId: addCritic
+      requestBody:
+        description: List Criticals
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Critique'
+      responses:
+        "202":
+          description: Critic added
+        "422":
+          description: Missing information
+  /critiques/{id}:
+    get:
+      tags:
+      - Critique
+      operationId: getCriticals
+      parameters:
+      - name: id
+        in: path
+        description: id of critic
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Critique'
+    put:
+      tags:
+      - Critique
+      description: Update critics
+      operationId: updateCritics
+      parameters:
+      - name: id
+        in: path
+        description: besoin d'être mise à jour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: Updated actor object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Critique'
+        required: true
+      responses:
+        "400":
+          description: critique invalide
+        "404":
+          description: critique inconnue
+    delete:
+      tags:
+      - Critique
+      operationId: delCritique
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: id
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Suppression de la critique
+        "400":
+          description: Id invalide
+        "404":
+          description: Realisateur non trouvée
+  /notes:
+    get:
+      tags:
+      - Note
+      operationId: listNotes
+      responses:
+        "200":
+          description: actors ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+    post:
+      tags:
+      - Note
+      operationId: addNote
+      requestBody:
+        description: List Notes
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+      responses:
+        "202":
+          description: Critic added
+        "422":
+          description: Missing information
+  /notes/{id}:
+    get:
+      tags:
+      - Note
+      operationId: getNotes
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: note ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+    put:
+      tags:
+      - Note
+      description: Update note
+      operationId: updateNote
+      parameters:
+      - name: id
+        in: path
+        description: besoin d'être mise à jour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: Updated user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+        required: true
+      responses:
+        "400":
+          description: note invalide
+        "404":
+          description: note inconnue
+    delete:
+      tags:
+      - Note
+      operationId: delNote
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: id
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Suppression de la note
+        "400":
+          description: Id invalide
+        "404":
+          description: Note non trouvée
+components:
+  schemas:
+    Film:
+      required:
+      - acteurs
+      - affiche
+      - bandeAnnonce
+      - critique
+      - description
+      - notes
+      - realisateur
+      - titre
+      type: object
+      properties:
+        titre:
+          type: string
+        description:
+          type: string
+        affiche:
+          type: string
+        bandeAnnonce:
+          type: string
+        realisateur:
+          type: array
+          items:
+            $ref: '#/components/schemas/RealisateurContenu'
+        acteur:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActeurContenu'
+        critique:
+          type: array
+          items:
+            $ref: '#/components/schemas/Critique'
+        note:
+          type: array
+          items:
+            $ref: '#/components/schemas/Note'
+    Films:
+      type: array
+      items:
+        $ref: '#/components/schemas/Film'
+    Realisateur:
+      required:
+      - biographie
+      - dateNaissance
+      - film
+      - nationalite
+      - nom
+      - photo
+      type: object
+      properties:
+        id:
+          type: integer
+        nom:
+          type: string
+        photo:
+          type: string
+        nationalite:
+          type: string
+        biographie:
+          type: string
+        dateNaissance:
+          type: string
+          format: date
+        film:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmContenu'
+    Acteur:
+      required:
+      - biographie
+      - dateNaissance
+      - film
+      - nationalite
+      - nom
+      - photo
+      type: object
+      properties:
+        id:
+          type: integer
+        nom:
+          type: string
+        photo:
+          type: string
+        nationalite:
+          type: string
+        biographie:
+          type: string
+        dateNaissance:
+          type: string
+          format: date
+        film:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmContenu'
+    Critique:
+      required:
+      - contenu
+      - film
+      type: object
+      properties:
+        id:
+          type: integer
+        contenu:
+          type: string
+        film:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmContenu'
+    Note:
+      required:
+      - film
+      - id
+      - valeur
+      type: object
+      properties:
+        id:
+          type: integer
+        valeur:
+          type: integer
+        film:
+          maximum: 5
+          minimum: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmContenu'
+    FilmContenu:
+      required:
+      - acteur
+      - affiche
+      - critique
+      - description
+      - note
+      - realisateur
+      - titre
+      type: object
+      properties:
+        titre:
+          type: string
+        description:
+          type: string
+          format: text
+        affiche:
+          type: string
+    RealisateurContenu:
+      required:
+      - biographie
+      - film
+      - nom
+      - photo
+      type: object
+      properties:
+        nom:
+          type: string
+        biographie:
+          type: string
+          format: text
+        photo:
+          type: string
+          format: url
+        film:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmContenu'
+    ActeurContenu:
+      required:
+      - biographie
+      - film
+      - nom
+      - photo
+      type: object
+      properties:
+        nom:
+          type: string
+        biographie:
+          type: string
+          format: text
+        photo:
+          type: string
+          format: url
+        film:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmContenu'
