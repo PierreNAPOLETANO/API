@@ -4,7 +4,8 @@ info:
   description: API Cinema
   version: 0.1.0
 servers:
-- url: /
+  - url: https://localhost:8000/
+    description: Sandbox server (uses test data)
 tags:
 - name: Film
   description: API film(s)
@@ -87,6 +88,43 @@ paths:
         explode: true
         schema:
           type: string
+      - name: description
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: affiche
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: bandeAnnonce
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: realisateur
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: film invalide
+        "404":
+          description: film inconnue
       requestBody:
         description: Updated film object
         content:
@@ -104,13 +142,6 @@ paths:
         required: true
         style: simple
         explode: false
-        schema:
-          type: integer
-      - name: id
-        in: query
-        required: true
-        style: form
-        explode: true
         schema:
           type: integer
       responses:
@@ -182,6 +213,53 @@ paths:
         explode: false
         schema:
           type: integer
+      - name: nom
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+      - name: photo
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+          format: url
+      - name: nationalite
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+      - name: biographie
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+          format: text
+      - name: dateNaissance
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+          format: date
+      - name: film
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/Realisateur'
       requestBody:
         description: Updated producer object
         content:
@@ -204,13 +282,6 @@ paths:
         required: true
         style: simple
         explode: false
-        schema:
-          type: integer
-      - name: id
-        in: query
-        required: true
-        style: form
-        explode: true
         schema:
           type: integer
       responses:
@@ -282,6 +353,53 @@ paths:
         explode: false
         schema:
           type: integer
+      - name: nom
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+      - name: photo
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+          format: url
+      - name: nationalite
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+      - name: biographie
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+          format: text
+      - name: dateNaissance
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+          format: date
+      - name: film
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/Acteur'
       requestBody:
         description: Updated actor object
         content:
@@ -304,13 +422,6 @@ paths:
         required: true
         style: simple
         explode: false
-        schema:
-          type: integer
-      - name: id
-        in: query
-        required: true
-        style: form
-        explode: true
         schema:
           type: integer
       responses:
@@ -406,13 +517,6 @@ paths:
         explode: false
         schema:
           type: integer
-      - name: id
-        in: query
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: integer
       responses:
         "200":
           description: Suppression de la critique
@@ -503,13 +607,6 @@ paths:
         required: true
         style: simple
         explode: false
-        schema:
-          type: integer
-      - name: id
-        in: query
-        required: true
-        style: form
-        explode: true
         schema:
           type: integer
       responses:
