@@ -33,7 +33,7 @@ paths:
     post:
       tags:
       - Film
-      operationId: addMovie
+      operationId: addMovies
       requestBody:
         description: List Movies
         content:
@@ -46,19 +46,19 @@ paths:
         "422":
           description: Missing information
   /films/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id of movie
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
     get:
       tags:
       - Film
       operationId: getMovieById
-      parameters:
-      - name: id
-        in: path
-        description: id of movie
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
       responses:
         "200":
           description: ok
@@ -66,6 +66,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Film'
+    post:
+      tags:
+      - Film
+      operationId: addMovie
+      requestBody:
+        description: Add Movie
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+      responses:
+        "202":
+          description: Movie added
+        "422":
+          description: Missing information
     put:
       tags:
       - Film
@@ -179,19 +194,19 @@ paths:
         "422":
           description: Missing information
   /realisateurs/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id of producer
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
     get:
       tags:
       - Realisateur
       operationId: getProducer
-      parameters:
-      - name: id
-        in: path
-        description: id of producer
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
       responses:
         "200":
           description: ok
@@ -199,6 +214,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Realisateur'
+    post:
+      tags:
+      - Realisateur
+      operationId: addProducor
+      requestBody:
+        description: Add Producor
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realisateur'
+      responses:
+        "202":
+          description: Movie added
+        "422":
+          description: Missing information
     put:
       tags:
       - Realisateur
@@ -306,7 +336,7 @@ paths:
     post:
       tags:
       - Acteur
-      operationId: addActor
+      operationId: addActors
       requestBody:
         description: List Actors
         content:
@@ -319,19 +349,19 @@ paths:
         "422":
           description: Missing information
   /acteurs/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id of acteur
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
     get:
       tags:
       - Acteur
       operationId: getActor
-      parameters:
-      - name: id
-        in: path
-        description: id of acteur
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
       responses:
         "200":
           description: ok
@@ -339,6 +369,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Acteur'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Acteur'
+    post:
+      tags:
+      - Acteur
+      operationId: addActor
+      requestBody:
+        description: Add Actor
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Acteur'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Acteur'
+      responses:
+        "202":
+          description: Movie added
+        "422":
+          description: Missing information
     put:
       tags:
       - Acteur
@@ -446,7 +497,7 @@ paths:
     post:
       tags:
       - Critique
-      operationId: addCritic
+      operationId: addCritics
       requestBody:
         description: List Criticals
         content:
@@ -459,19 +510,18 @@ paths:
         "422":
           description: Missing information
   /critiques/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id of critic
+      required: true
+      explode: false
+      schema:
+        type: integer
     get:
       tags:
       - Critique
       operationId: getCriticals
-      parameters:
-      - name: id
-        in: path
-        description: id of critic
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
       responses:
         "200":
           description: ok
@@ -479,6 +529,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Critique'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Critique'
+    post:
+      tags:
+      - Critique
+      operationId: addCritic
+      requestBody:
+        description: Add Critic
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realisateur'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Realisateur'
+      responses:
+        "202":
+          description: Critic added
+        "422":
+          description: Missing information
     put:
       tags:
       - Critique
@@ -486,17 +557,35 @@ paths:
       operationId: updateCritics
       parameters:
       - name: id
-        in: path
+        in: query
         description: besoin d'être mise à jour
         required: true
-        style: simple
         explode: false
         schema:
           type: integer
+      - name: contenu
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: string
+      - name: film
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmContenu'
       requestBody:
         description: Updated actor object
         content:
           application/json:
+            schema:
+              $ref: '#/components/schemas/Critique'
+          application/xml:
             schema:
               $ref: '#/components/schemas/Critique'
         required: true
@@ -536,14 +625,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Note'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Note'
     post:
       tags:
       - Note
-      operationId: addNote
+      operationId: addNotes
       requestBody:
         description: List Notes
         content:
           application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+          application/xml:
             schema:
               $ref: '#/components/schemas/Note'
       responses:
@@ -552,6 +647,15 @@ paths:
         "422":
           description: Missing information
   /notes/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id of movie
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
     get:
       tags:
       - Note
@@ -571,6 +675,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Note'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Note'
+    post:
+      tags:
+      - Note
+      operationId: addNote
+      requestBody:
+        description: Add Notes
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Note'
+      responses:
+        "202":
+          description: Critic added
+        "422":
+          description: Missing information
     put:
       tags:
       - Note
@@ -578,17 +703,28 @@ paths:
       operationId: updateNote
       parameters:
       - name: id
-        in: path
+        in: query
         description: besoin d'être mise à jour
         required: true
-        style: simple
         explode: false
         schema:
           type: integer
+      - name: valeur
+        in: query
+        description: besoin d'être mise à jour
+        required: true
+        explode: false
+        schema:
+          type: integer
+          maximum: 5
+          minimum: 0
       requestBody:
         description: Updated user object
         content:
           application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+          application/xml:
             schema:
               $ref: '#/components/schemas/Note'
         required: true
@@ -737,9 +873,9 @@ components:
           type: integer
         valeur:
           type: integer
-        film:
           maximum: 5
           minimum: 0
+        film:
           type: array
           items:
             $ref: '#/components/schemas/FilmContenu'

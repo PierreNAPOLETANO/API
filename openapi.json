@@ -57,7 +57,7 @@
         "tags": [
           "Film"
         ],
-        "operationId": "addMovie",
+        "operationId": "addMovies",
         "requestBody": {
           "description": "List Movies",
           "content": {
@@ -79,24 +79,24 @@
       }
     },
     "/films/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id of movie",
+          "required": true,
+          "style": "simple",
+          "explode": false,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
       "get": {
         "tags": [
           "Film"
         ],
         "operationId": "getMovieById",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "id of movie",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "ok",
@@ -107,6 +107,30 @@
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Film"
+        ],
+        "operationId": "addMovie",
+        "requestBody": {
+          "description": "Add Movie",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Film"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Movie added"
+          },
+          "422": {
+            "description": "Missing information"
           }
         }
       },
@@ -279,24 +303,24 @@
       }
     },
     "/realisateurs/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id of producer",
+          "required": true,
+          "style": "simple",
+          "explode": false,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
       "get": {
         "tags": [
           "Realisateur"
         ],
         "operationId": "getProducer",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "id of producer",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "ok",
@@ -307,6 +331,30 @@
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Realisateur"
+        ],
+        "operationId": "addProducor",
+        "requestBody": {
+          "description": "Add Producor",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Realisateur"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Movie added"
+          },
+          "422": {
+            "description": "Missing information"
           }
         }
       },
@@ -468,7 +516,7 @@
         "tags": [
           "Acteur"
         ],
-        "operationId": "addActor",
+        "operationId": "addActors",
         "requestBody": {
           "description": "List Actors",
           "content": {
@@ -490,24 +538,24 @@
       }
     },
     "/acteurs/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id of acteur",
+          "required": true,
+          "style": "simple",
+          "explode": false,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
       "get": {
         "tags": [
           "Acteur"
         ],
         "operationId": "getActor",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "id of acteur",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "ok",
@@ -516,8 +564,42 @@
                 "schema": {
                   "$ref": "#/components/schemas/Acteur"
                 }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Acteur"
+                }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Acteur"
+        ],
+        "operationId": "addActor",
+        "requestBody": {
+          "description": "Add Actor",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Acteur"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Acteur"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Movie added"
+          },
+          "422": {
+            "description": "Missing information"
           }
         }
       },
@@ -679,7 +761,7 @@
         "tags": [
           "Critique"
         ],
-        "operationId": "addCritic",
+        "operationId": "addCritics",
         "requestBody": {
           "description": "List Criticals",
           "content": {
@@ -701,24 +783,23 @@
       }
     },
     "/critiques/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id of critic",
+          "required": true,
+          "explode": false,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
       "get": {
         "tags": [
           "Critique"
         ],
         "operationId": "getCriticals",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "id of critic",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "ok",
@@ -727,8 +808,42 @@
                 "schema": {
                   "$ref": "#/components/schemas/Critique"
                 }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Critique"
+                }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Critique"
+        ],
+        "operationId": "addCritic",
+        "requestBody": {
+          "description": "Add Critic",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Realisateur"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Realisateur"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Critic added"
+          },
+          "422": {
+            "description": "Missing information"
           }
         }
       },
@@ -741,13 +856,35 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
+            "in": "query",
             "description": "besoin d'être mise à jour",
             "required": true,
-            "style": "simple",
             "explode": false,
             "schema": {
               "type": "integer"
+            }
+          },
+          {
+            "name": "contenu",
+            "in": "query",
+            "description": "besoin d'être mise à jour",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "film",
+            "in": "query",
+            "description": "besoin d'être mise à jour",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FilmContenu"
+              }
             }
           }
         ],
@@ -755,6 +892,11 @@
           "description": "Updated actor object",
           "content": {
             "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Critique"
+              }
+            },
+            "application/xml": {
               "schema": {
                 "$ref": "#/components/schemas/Critique"
               }
@@ -815,6 +957,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/Note"
                 }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Note"
+                }
               }
             }
           }
@@ -824,11 +971,16 @@
         "tags": [
           "Note"
         ],
-        "operationId": "addNote",
+        "operationId": "addNotes",
         "requestBody": {
           "description": "List Notes",
           "content": {
             "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Note"
+              }
+            },
+            "application/xml": {
               "schema": {
                 "$ref": "#/components/schemas/Note"
               }
@@ -846,6 +998,19 @@
       }
     },
     "/notes/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id of movie",
+          "required": true,
+          "style": "simple",
+          "explode": false,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
       "get": {
         "tags": [
           "Note"
@@ -871,8 +1036,42 @@
                 "schema": {
                   "$ref": "#/components/schemas/Note"
                 }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Note"
+                }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Note"
+        ],
+        "operationId": "addNote",
+        "requestBody": {
+          "description": "Add Notes",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Note"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Note"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Critic added"
+          },
+          "422": {
+            "description": "Missing information"
           }
         }
       },
@@ -885,13 +1084,24 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
+            "in": "query",
             "description": "besoin d'être mise à jour",
             "required": true,
-            "style": "simple",
             "explode": false,
             "schema": {
               "type": "integer"
+            }
+          },
+          {
+            "name": "valeur",
+            "in": "query",
+            "description": "besoin d'être mise à jour",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 5,
+              "minimum": 0
             }
           }
         ],
@@ -899,6 +1109,11 @@
           "description": "Updated user object",
           "content": {
             "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Note"
+              }
+            },
+            "application/xml": {
               "schema": {
                 "$ref": "#/components/schemas/Note"
               }
@@ -1114,11 +1329,11 @@
             "type": "integer"
           },
           "valeur": {
-            "type": "integer"
+            "type": "integer",
+            "maximum": 5,
+            "minimum": 0
           },
           "film": {
-            "maximum": 5,
-            "minimum": 0,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FilmContenu"
